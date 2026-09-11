@@ -3,6 +3,8 @@
 
 using UnityEngine;
 using TMPro;
+//using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class DatabaseHandler : MonoBehaviour
 {
@@ -13,24 +15,39 @@ public class DatabaseHandler : MonoBehaviour
     public GameObject ageIntput;
     public TMP_InputField namePlr;
     public TMP_InputField agePlr;
+    public Button confirm;
+    public GameObject addUserPanel;
 
     // Checking if complete
     void Start()
     {
         namePlr = nameInput.GetComponent<TMP_InputField>();
         agePlr = ageIntput.GetComponent<TMP_InputField>();
+
+        confirm.onClick.AddListener(ConfirmClick);
     }
 
     // Update is called once per frame
-    void Update()
+    public void Play()
     {
-        if (namePlr.text != null && namePlr != null || agePlr.text != null && agePlr != null) 
+        addUserPanel.SetActive(true);
+    }
+
+    void ConfirmClick()
+    {
+        if (namePlr.text != null && namePlr != null || agePlr.text != null && agePlr != null)
         {
-            message.text = "You are: " + namePlr.text + " | " + agePlr.text + " y.o.";
-            if (greet != null)
+            if (namePlr.text != null &&  agePlr.text != null)
             {
-                greet.text = namePlr.text;
+                message.text = "You are: " + namePlr.text + " | " + agePlr.text + " y.o.";
+                if (greet != null)
+                {
+                    greet.text = "Hello " + namePlr.text + "!";
+                }
             }
+            
+
+            addUserPanel.SetActive(false);
         }
     }
 }
