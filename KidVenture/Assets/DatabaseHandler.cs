@@ -8,6 +8,7 @@ public class DatabaseHandler : MonoBehaviour
 {
     // The code will be a little bit messy but I will polish it after making the feature work
     public TextMeshProUGUI message;
+    public TextMeshProUGUI greet;
     public GameObject nameInput;
     public GameObject ageIntput;
     public TMP_InputField namePlr;
@@ -25,7 +26,11 @@ public class DatabaseHandler : MonoBehaviour
     {
         if (namePlr.text != null && namePlr != null || agePlr.text != null && agePlr != null) 
         {
-            message.text = "You are: " + namePlr.text + "| " + agePlr.text + " y.o.";
+            message.text = "You are: " + namePlr.text + " | " + agePlr.text + " y.o.";
+            if (greet != null)
+            {
+                greet.text = namePlr.text;
+            }
         }
     }
 }
